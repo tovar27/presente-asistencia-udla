@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "936705284782",
+    "project_id": "presente-movil",
+    "storage_bucket": "presente-movil.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936705284782:android:15565ccc2046a3da706b3f",
+        "android_client_info": {
+          "package_name": "com.example.presente_movil"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeJa-BnGL3ef4QEI6drm5oIhzvNvUZDLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
