@@ -109,7 +109,7 @@ lib/
 ### Ejecución Local
 ```bash
 # 1. Clonar el repositorio
-git clone <URL_DEL_REPOSITORIO>
+git clone <https://github.com/tovar27/presente-asistencia-udla.git>
 cd presente_movil
 
 # 2. Descargar dependencias (incluyendo firebase_core, firebase_auth, cloud_firestore y mobile_scanner)
