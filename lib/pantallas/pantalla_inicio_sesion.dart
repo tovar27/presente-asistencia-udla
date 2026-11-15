@@ -97,7 +97,8 @@ class _EstadoPantallaInicioSesion extends State<PantallaInicioSesion> {
         return;
       }
 
-      // VALIDACIÓN CRÍTICA DEL ESTADO DEL CORREO
+      // VALIDACIÓN CRÍTICA DEL ESTADO DEL CORREO (APAGADA TEMPORALMENTE PARA PRUEBAS)
+      /* 
       User? usuarioActual = FirebaseAuth.instance.currentUser;
       if (usuarioActual != null && !usuarioActual.emailVerified) {
         await FirebaseAuth.instance.signOut();
@@ -107,6 +108,7 @@ class _EstadoPantallaInicioSesion extends State<PantallaInicioSesion> {
         );
         return;
       }
+      */
 
       // Actualizamos estado si estaba pendiente en la base de datos
       if (datos?['estado'] == 'pendiente') {

@@ -720,26 +720,7 @@ class _PerfilDocenteScreenState extends State<PerfilDocenteScreen> {
       width: double.infinity,
       height: 54,
       child: ElevatedButton.icon(
-        onPressed: () async {
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) => const Center(
-              child: CircularProgressIndicator(color: Color(0xFF00382A)),
-            ),
-          );
-
-          await FirebaseAuth.instance.signOut();
-
-          if (context.mounted) {
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                builder: (context) => const PantallaInicioSesion(),
-              ),
-              (route) => false,
-            );
-          }
-        },
+        onPressed: _confirmarCerrarSesion,
         icon: const Icon(Icons.logout, color: Colors.white),
         label: const Text(
           'Cerrar Sesión Segura',
@@ -768,5 +749,62 @@ class _PerfilDocenteScreenState extends State<PerfilDocenteScreen> {
         style: TextStyle(fontSize: 10, color: Colors.black45, height: 1.5),
       ),
     );
+  }
+
+  Future<void> _confirmarCerrarSesion() async {
+    final bool? confirmar = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Text(
+          'Cerrar sesión',
+          style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+        ),
+        content: const Text(
+          '¿Estás seguro de que deseas salir de tu cuenta institucional?',
+          style: TextStyle(fontSize: 13, color: Colors.black87),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text(
+              'Cancelar',
+              style: TextStyle(color: Colors.black54),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: _colorPrimario,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: const Text(
+              'Cerrar sesión',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmar == true) {
+      if (!mounted) return;
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) =>
+            Center(child: CircularProgressIndicator(color: _colorPrimario)),
+      );
+
+      await FirebaseAuth.instance.signOut();
+
+      if (!mounted) return;
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const PantallaInicioSesion()),
+        (route) => false,
+      );
+    }
   }
 }
