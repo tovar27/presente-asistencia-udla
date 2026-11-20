@@ -7,6 +7,7 @@ import 'estudiante/registro_estudiante.dart';
 import 'recuperar_clave/recuperar_clave_paso1.dart';
 import 'docente/navegacion_docente.dart';
 import 'estudiante/navegacion_estudiante.dart';
+import 'recuperar_cuenta/recuperar_cuenta.dart';
 
 class PantallaInicioSesion extends StatefulWidget {
   const PantallaInicioSesion({super.key});
@@ -632,7 +633,13 @@ class _EstadoPantallaInicioSesion extends State<PantallaInicioSesion> {
           '¿Problemas de ingreso? ',
           'Recuperar cuenta',
           () {
-            // Temporalmente no hace nada
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    RecuperarCuentaScreen(rol: _rolSeleccionado),
+              ),
+            );
           },
         ),
         const SizedBox(height: 16),
